@@ -183,7 +183,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ],
             'log'     => [
                 'enabled' => false,
-                'level'   => 100,
+                'level'   => 'debug',
                 'handler' => null,
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
                 'subscriber' => null
