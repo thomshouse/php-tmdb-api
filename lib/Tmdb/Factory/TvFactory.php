@@ -39,6 +39,11 @@ class TvFactory extends AbstractFactory
     private $castFactory;
 
     /**
+     * @var ContentRatingsFactory
+     */
+    private $contentRatingsFactory;
+
+    /**
      * @var People\CrewFactory
      */
     private $crewFactory;
@@ -110,6 +115,12 @@ class TvFactory extends AbstractFactory
         }
 
         $tvShow = new Tv();
+
+        if (array_key_exists('content_ratings', $data) && array_key_exists('results', $data['content_ratings'])) {
+            $tvShow->setContentRatings(
+                $this->createGenericCollection($data['content_ratings']['results'], new Tv\ContentRating())
+            );
+        }
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits']) && $data['credits']['cast'] !== null) {
@@ -285,6 +296,23 @@ class TvFactory extends AbstractFactory
     public function getCastFactory()
     {
         return $this->castFactory;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ContentRatingsFactory
+     */
+    public function getContentRatingsFactory()
+    {
+        return $this->contentRatingsFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\ContentRatingFactory $contentRatingFactory
+     * @return $this
+     */
+    public function setContentRatingsFactory($contentRatingsFactory)
+    {
+        $this->contentRatingsFactory = $contentRatingsFactory;
     }
 
     /**
