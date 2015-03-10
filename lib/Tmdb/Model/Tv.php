@@ -111,6 +111,11 @@ class Tv extends AbstractModel
     private $originalName;
 
     /**
+     * @var string
+     */
+    private $originalLanguage;
+
+    /**
      * @var GenericCollection
      */
     private $originCountry;
@@ -230,6 +235,7 @@ class Tv extends AbstractModel
         'number_of_episodes',
         'number_of_seasons',
         'original_name',
+        'original_language',
         'overview',
         'popularity',
         'poster_path',
@@ -588,6 +594,25 @@ class Tv extends AbstractModel
     public function getOriginalName()
     {
         return $this->originalName;
+    }
+
+    /**
+     * @param  string $originalLanguage
+     * @return $this
+     */
+    public function setOriginalLanguage($originalLanguage)
+    {
+        $this->originalLanguage = $originalLanguage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalLanguage()
+    {
+        return $this->originalLanguage;
     }
 
     /**
